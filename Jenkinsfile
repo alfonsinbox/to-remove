@@ -15,5 +15,13 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
+        stage('Ask user for input') {
+            input {
+                message 'do we do it?'
+            }
+            steps {
+                sh 'echo'
+            }
+        }
     }
 }
