@@ -2,7 +2,9 @@ pipeline {
     agent any
     stages() {
         stage('dothething') {
-            sh 'echo I think i do ing it'
+            steps {
+                echo 'I think i do ing it'
+            }
         }
     }
 }
