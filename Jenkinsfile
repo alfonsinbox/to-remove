@@ -28,6 +28,7 @@ pipeline {
             }
             steps {
                 echo "Hello, ${PERSON} Sir"
+                sh 'pwd'
                 sh 'docker-compose up --build'
             }
         }
