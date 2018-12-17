@@ -24,7 +24,7 @@ pipeline {
                 }
             }
             steps {
-                echo 'Hello, ${PERSON} Sir'
+                echo "Hello, ${PERSON} Sir"
             }
         }
     }
