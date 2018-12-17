@@ -28,7 +28,7 @@ pipeline {
             }
             steps {
                 echo "Hello, ${PERSON} Sir"
-                sh 'docker-compose up --build'
+                sh '/usr/local/bin/docker-compose up --build'
             }
         }
     }
