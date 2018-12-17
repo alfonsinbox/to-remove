@@ -1,9 +1,12 @@
 pipeline {
-    agent any
+    agent {
+        label 'docker'
+    }
     stages() {
         stage('dothething') {
             steps {
                 echo 'I think i do ing it'
+                sh 'docker-compose –f build-compose.yml run –rm compile'
             }
         }
     }
