@@ -7,6 +7,7 @@ pipeline {
     stages() {
         stage('Test') { 
             steps {
+                sh 'cat docker-compose.yml'
                 sh 'mvn -B test'
             }
         }
@@ -29,6 +30,7 @@ pipeline {
             steps {
                 echo "Hello, ${PERSON} Sir"
                 sh 'pwd'
+
                 sh 'docker-compose up --build'
             }
         }
