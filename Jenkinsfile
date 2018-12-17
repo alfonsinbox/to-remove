@@ -18,9 +18,13 @@ pipeline {
         stage('Ask user for input') {
             input {
                 message 'do we do it?'
+                ok 'yes we do'
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who is we hello to?')
+                }
             }
             steps {
-                sh 'echo'
+                echo 'Hello, ${PERSON} Sir'
             }
         }
     }
