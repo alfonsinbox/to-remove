@@ -9,6 +9,7 @@ pipeline {
 			}
 			steps {
 				dir('seagul') {
+          sh 'npm i'
 					sh 'ng build --prod'
 				}
 			}
