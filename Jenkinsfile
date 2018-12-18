@@ -5,9 +5,9 @@ pipeline {
         jdk 'jdk8'
     }
     stages() {
-        agent any
         stage('Test') { 
-            steps {
+        agent any
+        steps {
                 sh 'cat docker-compose.yml'
                 // sh 'mvn -B test'
             }
