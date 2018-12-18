@@ -2,11 +2,11 @@ pipeline {
     agent none
     stages() {
         stage('Build Frontend') { 
-            //when {
-                //anyOf {
-                    //changeset 'seagul/**/*'
-                //}
-            //}
+            when {
+                anyOf {
+                    changeset 'seagul/**/*'
+                }
+            }
             agent {
                 docker {
                     image 'bare-angular:alpine'
@@ -21,21 +21,20 @@ pipeline {
             }
         }
         stage('Build Backend') { 
-            //when {
-                //anyOf {
-                    //changeset 'src/**/*'
-                //}
-            //}
+            when {
+                anyOf {
+                    changeset 'src/**/*'
+                }
+            }
             agent {
                 docker {
                     image 'maven:3-alpine'
+                    args '-v $HOME/.m2:/home/.m2'
                 }
             }
             steps {
-                dir('fb-api') {
-                    sh 'pwd'
-                    sh 'mvn -B -DskipTests=true clean package'
-                }
+                sh 'pwd'
+                sh 'mvn -B -DskipTests=true clean package'
             }
         }
     }
