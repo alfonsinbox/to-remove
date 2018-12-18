@@ -1,13 +1,9 @@
 pipeline {
     agent none
-    tools {
-        maven 'maven360'
-        jdk 'jdk8'
-    }
     stages() {
         stage('Test') { 
-        agent any
-        steps {
+            agent any
+            steps {
                 sh 'cat docker-compose.yml'
                 // sh 'mvn -B test'
             }
@@ -24,6 +20,8 @@ pipeline {
                 }
             }
             steps {
+                sh 'pwd'
+                sh 'find .'
                 sh 'ng build --prod'
             }
         }
