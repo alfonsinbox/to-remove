@@ -9,11 +9,11 @@ pipeline {
             }
         }
         stage('Build Frontend') { 
-            when {
-                anyOf {
-                    changeset 'seagul/**/*'
-                }
-            }
+            //when {
+                //anyOf {
+                    //changeset 'seagul/**/*'
+                //}
+            //}
             agent {
                 docker {
                     image 'bare-angular:alpine'
