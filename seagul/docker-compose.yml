@@ -1,0 +1,8 @@
+version: '3'
+services:
+  sigge:
+    build: .
+    image: 'ng-server'
+    container_name: 'main-web'
+    ports:
+    - '80:80'
