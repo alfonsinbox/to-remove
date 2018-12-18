@@ -1,15 +1,21 @@
 pipeline {
-  agent any
-  stages {
-    stage('Build the Angular app') {
-      steps {
-        sh 'ng build --prod'
-      }
-    }
-    stage('Run the docker compose build and up') {
-      steps {
-        sh 'docker-compose up --build -d'
-      }
-    }
-  }
+	agent none
+	stages {
+		stage('Build the Angular app') {
+			agent {
+				dockerfile {
+					dir 'build'
+				}
+			}
+			steps {
+				sh 'ng build --prod'
+			}
+		}
+		stage('Do the deployement') {
+			agent any
+			steps {
+				sh 'find .'
+			}
+		}
+	}
 }
