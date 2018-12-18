@@ -23,6 +23,7 @@ pipeline {
                 dir('seagul') {
                     sh 'pwd'
                     sh 'find .'
+                    sh 'npm i'
                     sh 'ng build --prod'
                 }
                 sh 'pwd'
