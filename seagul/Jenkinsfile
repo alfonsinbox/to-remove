@@ -17,7 +17,7 @@ pipeline {
 		stage('Do the deployement') {
 			agent any
 			steps {
-				sh 'find ./seagul/dist'
+				sh 'find .'
 			}
 		}
 	}
