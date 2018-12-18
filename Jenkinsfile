@@ -34,7 +34,7 @@ pipeline {
             }
             steps {
                 sh 'pwd'
-                sh 'mvn -B -DskipTests=true clean package'
+                sh 'mvn -B -DskipTests=true package'
             }
         }
     }
