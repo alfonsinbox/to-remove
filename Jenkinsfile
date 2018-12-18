@@ -1,13 +1,6 @@
 pipeline {
     agent none
     stages() {
-        stage('Test') { 
-            agent any
-            steps {
-                sh 'cat docker-compose.yml'
-                // sh 'mvn -B test'
-            }
-        }
         stage('Build Frontend') { 
             //when {
                 //anyOf {
@@ -22,40 +15,28 @@ pipeline {
             steps {
                 dir('seagul') {
                     sh 'pwd'
-                    sh 'find .'
                     sh 'npm i'
                     sh 'ng build --prod'
                 }
-                sh 'pwd'
             }
         }
-        stage('Done') {
+        stage('Build Backend') { 
+            //when {
+                //anyOf {
+                    //changeset 'src/**/*'
+                //}
+            //}
+            agent {
+                docker {
+                    image 'maven:3-alpine'
+                }
+            }
             steps {
-                echo 'heysan'
+                dir('fb-api') {
+                    sh 'pwd'
+                    sh 'mvn -B -DskipTests=true clean package'
+                }
             }
         }
-        // stage('Build') { 
-        //     steps {
-        //         sh 'mvn -B -DskipTests clean package'
-        //     }
-        // }
-        // stage('Ask user for input') {
-        //     options {
-        //         timeout(time: 10, unit: 'SECONDS')
-        //     }    
-        //     input {
-        //         message 'do we do it?'
-        //         ok 'yes we do'
-        //         parameters {
-        //             string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who is we hello to?')
-        //         }               
-        //     }
-        //     steps {
-        //         echo "Hello, ${PERSON} Sir"
-        //         sh 'pwd'
-
-        //         sh 'docker-compose up --build'
-        //     }
-        // }
     }
 }

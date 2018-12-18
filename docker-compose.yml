@@ -1,5 +1,9 @@
 version: '3'
 services:
   computer:
-    image: 'alpine'
+    image: alpine
     command: 'echo Goodbye!'
+    networks: 
+    - jenkins-net
+networks:
+  jenkins-net:
