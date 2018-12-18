@@ -20,7 +20,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'cd seagul'
+                sh 'cd ./seagul'
                 sh 'pwd'
                 sh 'find .'
                 sh 'ng build --prod'
