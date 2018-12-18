@@ -8,13 +8,15 @@ pipeline {
 				}
 			}
 			steps {
-				sh 'ng build --prod'
+				dir('seagul') {
+					sh 'ng build --prod'
+				}
 			}
 		}
 		stage('Do the deployement') {
 			agent any
 			steps {
-				sh 'find .'
+				sh 'find ./seagul/dist'
 			}
 		}
 	}
