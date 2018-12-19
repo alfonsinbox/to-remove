@@ -18,16 +18,6 @@ pipeline {
                                 }
                             }
                         }
-                        stage('Deploy for Development') {
-                            // when {
-                            //     branch 'master'
-                            // }
-                            steps {
-                                sh 'pwd'
-                                sh 'chmod +x deploy.sh'
-                                sh './deploy.sh development'
-                            }
-                        }
                     }
                     post {
                         success {
@@ -66,6 +56,16 @@ pipeline {
                         }
                     }
                 }
+            }
+        }
+        stage('Deploy for Development') {
+            // when {
+            //     branch 'master'
+            // }
+            steps {
+                sh 'pwd'
+                sh 'chmod +x deploy.sh'
+                sh './deploy.sh development'
             }
         }
     }
