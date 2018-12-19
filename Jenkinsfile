@@ -15,6 +15,7 @@ pipeline {
                                 dir('seagul') {
                                     sh 'npm i --verbose'
                                     sh 'ng build --prod'
+                                    sh 'ls'
                                 }
                             }
                         }
