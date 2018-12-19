@@ -11,8 +11,8 @@ pipeline {
                         }
                     }
                     agent {
-                        dockerfile {
-                            dir 'seagul/build'
+                        docker {
+                            image 'bare-angular:alpine'
                         }
                     }
                     steps {
