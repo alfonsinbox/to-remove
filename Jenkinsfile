@@ -31,6 +31,7 @@ pipeline {
                 stage('Build Backend') { 
                     when {
                         anyOf {
+                            branch 'master'
                             changeset 'src/**/*'
                         }
                     }
