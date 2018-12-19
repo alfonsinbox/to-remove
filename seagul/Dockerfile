@@ -1,3 +1,3 @@
 FROM nginx:alpine
-WORKDIR dist/seagul
-COPY . /usr/share/nginx/html/
+
+COPY dist/seagul /usr/share/nginx/html/

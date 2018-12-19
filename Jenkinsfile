@@ -16,7 +16,7 @@ pipeline {
                                     sh 'npm i --verbose'
                                     sh 'ng build --prod'
                                     sh 'ls'
-                                    sh 'cp -r dist ..'
+                                    sh 'docker build -t cool-idea .'
                                 }
                             }
                         }
@@ -70,9 +70,12 @@ pipeline {
                     sh 'pwd'
                     sh 'ls'
                     find 'dist'
+                    sh 'docker stop seagul_dev || true'
+                    sh 'docker rm seagul_dev || true'
+                    sh 'docker run --name seagul_dev -d -p 80:80 cool-idea'
                 // }
-                sh 'chmod +x deploy.sh'
-                sh './deploy.sh development'
+                // sh 'chmod +x deploy.sh'
+                // sh './deploy.sh development'
             }
         }
     }
