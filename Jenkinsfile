@@ -55,6 +55,7 @@ pipeline {
             }
         }
         stage('Deploy for Development') {
+            agent any
             when {
                 branch 'master'
             }
