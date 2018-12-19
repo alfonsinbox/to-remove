@@ -1,3 +1,5 @@
+#!/bin/bash
+
 env=$1
 case $env in
     "development") 

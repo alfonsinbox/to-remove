@@ -61,6 +61,7 @@ pipeline {
             }
             steps {
                 sh 'pwd'
+                sh 'chmod +x deploy.sh jenkins'
                 sh './deploy.sh development'
             }
         }
