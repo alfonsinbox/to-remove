@@ -13,19 +13,18 @@ pipeline {
                     agent {
                         docker {
                             image 'bare-angular:alpine'
+                            customWorkspace 'seagul'
                         }
                     }
                     steps {
-                        dir('seagul') {
-                            sh 'pwd'
-                            sh 'npm i --verbose'
-                            sh 'ng build --prod'
-                        }
+                        sh 'pwd'
+                        sh 'npm i --verbose'
+                        sh 'ng build --prod'
                     }
                     post {
                         success {
                             echo 'success'
-                            archiveArtifacts artifacts: 'seagul/dist', fingerprint: true
+                            archiveArtifacts artifacts: 'dist', fingerprint: true
                         }
                     }
                 }
