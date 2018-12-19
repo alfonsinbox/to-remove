@@ -25,6 +25,7 @@ pipeline {
                     post {
                         success {
                             echo 'success'
+                            archiveArtifacts artifacts: 'seagul/dist/**/*', fingerprint: true
                         }
                     }
                 }
@@ -44,6 +45,11 @@ pipeline {
                     steps {
                         sh 'pwd'
                         sh 'mvn -B -DskipTests=true clean package'
+                    }
+                    post {
+                        success {
+                            archiveArtifacts artifacts: 'target/**/*.war', fingerprint: true
+                        }
                     }
                 }
             }
