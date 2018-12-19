@@ -61,7 +61,7 @@ pipeline {
             }
             steps {
                 sh 'pwd'
-                sh 'deploy.sh development'
+                sh './deploy.sh development'
             }
         }
     }
