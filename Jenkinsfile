@@ -64,8 +64,11 @@ pipeline {
             // }
             agent any
             steps {
-                sh 'pwd'
-                sh 'ls'
+                dir('seagul'){
+                    sh 'pwd'
+                    sh 'ls'
+                    find 'dist'
+                }
                 sh 'chmod +x deploy.sh'
                 sh './deploy.sh development'
             }
