@@ -3,18 +3,30 @@ pipeline {
     stages() {
         stage('Build') {
             parallel {
-                node {
-
                 stage('Build Frontend') { 
                     agent {
                         docker {
                             image 'bare-angular:alpine'
                         }
                     }
-                    steps {
-                        dir('seagul') {
-                            sh 'npm i --verbose'
-                            sh 'ng build --prod'
+                    stages {
+                        stage('build'){
+                            steps {
+                                dir('seagul') {
+                                    sh 'npm i --verbose'
+                                    sh 'ng build --prod'
+                                }
+                            }
+                        }
+                        stage('Deploy for Development') {
+                            // when {
+                            //     branch 'master'
+                            // }
+                            steps {
+                                sh 'pwd'
+                                sh 'chmod +x deploy.sh'
+                                sh './deploy.sh development'
+                            }
                         }
                     }
                     post {
@@ -24,9 +36,6 @@ pipeline {
                         }
                     }
                 }
-                }
-
-                                node {
                 stage('Backend') {
                     agent {
                         docker {
@@ -57,18 +66,6 @@ pipeline {
                         }
                     }
                 }
-                                }
-            }
-        }
-        stage('Deploy for Development') {
-            agent any
-            when {
-                branch 'master'
-            }
-            steps {
-                sh 'pwd'
-                sh 'chmod +x deploy.sh'
-                sh './deploy.sh development'
             }
         }
     }
