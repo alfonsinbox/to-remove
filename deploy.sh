@@ -2,7 +2,13 @@ env=$1
 case $env in
     "development") 
         echo "dev environment" 
-        docker build -t bare-alpine:alpinebash seagul/build
+#        docker rmi $(docker images -f "dangling=true" -q) || true
+        
+        docker stop seagul_dev || true
+        docker rm seagul_dev || true
+        docker build -t dev-seagul:alpine seagul
+        docker run --name seagul_dev -d dev-seagul:alpine
+
     ;;
     "production") 
         echo "prod" 
