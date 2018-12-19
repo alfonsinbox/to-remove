@@ -2,13 +2,13 @@ pipeline {
 	agent none
 	stages {
 		stage('Build the Angular app') {
-      dir('seagul') {
-        agent {
-          dockerfile {
-            dir 'build'
-          }
+      agent {
+        dockerfile {
+          dir 'seagul/build'
         }
-        steps {
+      }
+      steps {
+        dir('seagul'){
           sh 'npm i'
           sh 'ng build --prod'
         }
