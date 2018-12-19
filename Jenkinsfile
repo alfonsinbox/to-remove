@@ -60,6 +60,7 @@ pipeline {
                 branch 'master'
             }
             steps {
+                sh 'pwd'
                 sh 'deploy.sh development'
             }
         }
