@@ -1,2 +1,2 @@
 FROM nginx:alpine
-COPY dist/seagul /usr/share/nginx/html/
+COPY dist/seagul /usr/share/nginx/html/''

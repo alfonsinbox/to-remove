@@ -8,7 +8,9 @@ case $env in
         
         docker stop seagul_dev || true
         docker rm seagul_dev || true
-        docker build -t dev-seagul:alpine -f seagul/Dockerfile seagul
+        cd seagul
+        docker build -t dev-seagul:alpine .
+        cd ..
         docker run --name seagul_dev -d dev-seagul:alpine
 
     ;;
