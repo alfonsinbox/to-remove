@@ -1,7 +1,7 @@
 pipeline {
     agent none
     stages() {
-        stage('Build'){
+        stage('Build') {
             parallel {
                 stage('Build Frontend') { 
                     when {
@@ -24,7 +24,7 @@ pipeline {
                     }
                     post {
                         success {
-                            archiveArtifacts 
+                            echo 'success'
                         }
                     }
                 }
