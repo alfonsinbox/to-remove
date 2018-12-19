@@ -18,7 +18,7 @@ pipeline {
                     post {
                         success {
                             echo 'success'
-                            archiveArtifacts artifacts: 'dist', fingerprint: true
+                            archiveArtifacts artifacts: 'seagul/dist', fingerprint: true
                         }
                     }
                 }
