@@ -13,7 +13,7 @@ pipeline {
                     agent {
                         docker {
                             image 'bare-angular:alpine'
-                            customWorkspace 'seagul'
+                            customWorkspace './seagul'
                         }
                     }
                     steps {
