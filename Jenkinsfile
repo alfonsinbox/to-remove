@@ -62,6 +62,7 @@ pipeline {
             // when {
             //     branch 'master'
             // }
+            agent any
             steps {
                 sh 'pwd'
                 sh 'chmod +x deploy.sh'
