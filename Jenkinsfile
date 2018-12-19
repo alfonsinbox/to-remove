@@ -69,7 +69,7 @@ pipeline {
                 // dir('seagul'){
                     sh 'pwd'
                     sh 'ls'
-                    find 'dist'
+                    //find 'dist'
                     sh 'docker stop seagul_dev || true'
                     sh 'docker rm seagul_dev || true'
                     sh 'docker run --name seagul_dev -d -p 80:80 cool-idea'
