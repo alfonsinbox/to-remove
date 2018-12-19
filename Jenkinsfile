@@ -3,6 +3,8 @@ pipeline {
     stages() {
         stage('Build') {
             parallel {
+                node {
+
                 stage('Build Frontend') { 
                     agent {
                         docker {
@@ -22,6 +24,9 @@ pipeline {
                         }
                     }
                 }
+                }
+
+                                node {
                 stage('Backend') {
                     agent {
                         docker {
@@ -52,6 +57,7 @@ pipeline {
                         }
                     }
                 }
+                                }
             }
         }
         stage('Deploy for Development') {
