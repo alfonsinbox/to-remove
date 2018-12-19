@@ -16,6 +16,7 @@ pipeline {
                                     sh 'npm i --verbose'
                                     sh 'ng build --prod'
                                     sh 'ls'
+                                    sh 'cp -r dist ..'
                                 }
                             }
                         }
@@ -65,11 +66,11 @@ pipeline {
             // }
             agent any
             steps {
-                dir('seagul'){
+                // dir('seagul'){
                     sh 'pwd'
                     sh 'ls'
                     find 'dist'
-                }
+                // }
                 sh 'chmod +x deploy.sh'
                 sh './deploy.sh development'
             }
