@@ -11,7 +11,7 @@ case $env in
         cd seagul
         docker build -t dev-seagul:alpine .
         cd ..
-        docker run --name seagul_dev -d dev-seagul:alpine
+        docker run --name seagul_dev -d -p 80:80 dev-seagul:alpine
 
     ;;
     "production") 
