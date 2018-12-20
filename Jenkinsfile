@@ -17,12 +17,9 @@ pipeline {
                         stage('build') {
                             steps {
                                 dir('seagul') {
-                                    //sh 'npm i --verbose'
-                                    //sh 'ng build --prod --build-optimizer=false --aot=true'
-                                    //sh 'ls'
-                                    //   
-                                    sh 'which docker'
-                                    sh 'docker run --rm -d alpine'
+                                    sh 'npm i --verbose'
+                                    sh 'ng build --prod --build-optimizer=false --aot=true'
+                                    sh 'docker build -t final-angular:alpine .'
                                 }
                             }
                         }
