@@ -4,12 +4,7 @@ pipeline {
         stage('Build') {
             parallel {
                 stage('Build Frontend') { 
-                    agent {
-                        dockerfile {
-                            dir 'AngularImage'
-                            args '-v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock'
-                        }
-                    }
+                    agent any
                     environment {
                         HOME="."
                     }
