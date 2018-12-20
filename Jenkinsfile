@@ -22,8 +22,8 @@ pipeline {
                         stage('build') {
                             steps {
                                 dir('seagul') {
-                                    sh 'sudo npm i --verbose'
-                                    sh 'sudo ng build --prod'
+                                    sh 'npm i --verbose'
+                                    sh 'ng build --prod'
                                     sh 'ls'
                                     sh 'docker build -t cool-idea .'
                                 }
