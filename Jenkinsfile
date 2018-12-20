@@ -1,17 +1,12 @@
 pipeline {
     agent none
     stages() {
-        stage('who') {
-            agent any
-            steps {
-                sh 'whoami'
-            }
-        }
         stage('Build') {
             parallel {
                 stage('Build Frontend') { 
                     agent {
                         dockerfile {
+                            label 'docker'
                             dir 'AngularImage'
                             args '-v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock'
                         }
@@ -72,15 +67,15 @@ pipeline {
                 // }
             }
         }
-        stage('Deploy for Development') {
-            agent any
-            steps {
-                sh 'pwd'
-                sh 'ls'
-                sh 'docker stop seagul_dev || true'
-                sh 'docker rm seagul_dev || true'
-                sh 'docker run --name seagul_dev -d -p 80:80 cool-idea'
-            }
-        }
+        // stage('Deploy for Development') {
+        //     agent any
+        //     steps {
+        //         sh 'pwd'
+        //         sh 'ls'
+        //         sh 'docker stop seagul_dev || true'
+        //         sh 'docker rm seagul_dev || true'
+        //         sh 'docker run --name seagul_dev -d -p 80:80 cool-idea'
+        //     }
+        // }
     }
 }
