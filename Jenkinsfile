@@ -19,11 +19,11 @@ pipeline {
                         stage('build') {
                             steps {
                                 dir('seagul') {
+                                    sh 'whoami'
                                     sh 'npm i --verbose'
                                     sh 'ng build --prod'
                                     sh 'ls'
                                     sh 'docker build -t cool-idea .'
-                                    sh 'whoami'
                                 }
                             }
                         }
