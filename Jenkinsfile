@@ -23,7 +23,7 @@ pipeline {
                             steps {
                                 dir('seagul') {
                                     sh 'npm i --verbose'
-                                    sh 'ng build --prod'
+                                    sh 'ng build --prod --build-optimizer=false --aot=true'
                                     sh 'ls'
                                     sh 'docker build -t cool-idea .'
                                 }
