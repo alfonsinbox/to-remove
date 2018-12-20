@@ -13,6 +13,7 @@ pipeline {
                     agent {
                         dockerfile {
                             dir 'AngularImage'
+                            args '-v /usr/bin/docker:/usr/bin/docker'
                         }
                     }
                     environment {
