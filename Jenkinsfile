@@ -13,7 +13,7 @@ pipeline {
                     agent {
                         dockerfile {
                             dir 'AngularImage'
-                            args '-v $(which docker):/usr/bin/docker'
+                            args '-v /usr/bin/docker:/usr/bin/docker'
                         }
                     }
                     environment {
@@ -26,6 +26,7 @@ pipeline {
                                     //sh 'npm i --verbose'
                                     //sh 'ng build --prod --build-optimizer=false --aot=true'
                                     //sh 'ls'
+                                    sh 'which docker'
                                     sh 'docker build -t cool-idea .'
                                 }
                             }
