@@ -3,64 +3,64 @@ pipeline {
     stages() {
         stage('Build') {
             parallel {
-                stage('Build Frontend') { 
+                // stage('Build Frontend') { 
+                //     agent {
+                //         dockerfile {
+                //             dir 'AngularImage'
+                //             args '-v /var/run/docker.sock:/var/run/docker.sock'
+                //         }
+                //     }
+                //     environment {
+                //         HOME="."
+                //     }
+                //     stages {
+                //         stage('build') {
+                //             steps {
+                //                 dir('seagul') {
+                //                     //sh 'npm i --verbose --unsafe-perm node-sass'
+                //                     //sh 'ng build --prod --build-optimizer=false --aot=true'
+                //                     sh 'docker build -t final-angular:alpine .'
+                //                 }
+                //             }
+                //         }
+                //     }
+                //     post {
+                //         success {
+                //             echo 'success'
+                //             // archiveArtifacts artifacts: 'seagul/dist/**/*', fingerprint: true
+                //         }
+                //     }
+                // }
+                stage('Backend') {
                     agent {
-                        dockerfile {
-                            dir 'AngularImage'
-                            args '-v /var/run/docker.sock:/var/run/docker.sock'
+                        docker {
+                            image 'maven:3-alpine'
+                            args '-v $HOME/.m2:/root/.m2'
                         }
                     }
-                    environment {
-                        HOME="."
-                    }
                     stages {
-                        stage('build') {
+                        stage('Build Backend') { 
                             steps {
-                                dir('seagul') {
-                                    sh 'npm i --verbose --unsafe-perm node-sass'
-                                    sh 'ng build --prod --build-optimizer=false --aot=true'
-                                    sh 'docker build -t final-angular:alpine .'
+                                sh 'mvn -B -DskipTests=true clean package'
+                            }
+                            post {
+                                success {
+                                    archiveArtifacts artifacts: 'target/**/*.jar', fingerprint: true
+                                }
+                            }
+                        }
+                        stage('Test Backend') {
+                            steps {
+                                sh 'mvn test'
+                            }
+                            post {
+                                success {
+                                    archiveArtifacts artifacts: 'target/**/surefire-reports/**/*.xml', fingerprint: true
                                 }
                             }
                         }
                     }
-                    post {
-                        success {
-                            echo 'success'
-                            // archiveArtifacts artifacts: 'seagul/dist/**/*', fingerprint: true
-                        }
-                    }
                 }
-                // stage('Backend') {
-                //     agent {
-                //         docker {
-                //             image 'maven:3-alpine'
-                //             args '-v $HOME/.m2:/root/.m2'
-                //         }
-                //     }
-                //     stages {
-                //         stage('Build Backend') { 
-                //             steps {
-                //                 sh 'mvn -B -DskipTests=true clean package'
-                //             }
-                //             post {
-                //                 success {
-                //                     archiveArtifacts artifacts: 'target/**/*.jar', fingerprint: true
-                //                 }
-                //             }
-                //         }
-                //         stage('Test Backend') {
-                //             steps {
-                //                 sh 'mvn test'
-                //             }
-                //             post {
-                //                 success {
-                //                     archiveArtifacts artifacts: 'target/**/surefire-reports/**/*.xml', fingerprint: true
-                //                 }
-                //             }
-                //         }
-                //     }
-                // }
             }
         }
         // stage('Deploy for Development') {
