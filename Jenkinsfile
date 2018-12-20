@@ -27,7 +27,7 @@ pipeline {
                                     //sh 'ng build --prod --build-optimizer=false --aot=true'
                                     //sh 'ls'
                                     sh 'which docker'
-                                    sh 'docker build -t cool-idea .'
+                                    sh 'docker run --rm -d alpine'
                                 }
                             }
                         }
