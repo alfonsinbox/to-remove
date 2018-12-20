@@ -23,6 +23,7 @@ pipeline {
                                     sh 'ng build --prod'
                                     sh 'ls'
                                     sh 'docker build -t cool-idea .'
+                                    sh 'whoami'
                                 }
                             }
                         }
