@@ -5,8 +5,8 @@ pipeline {
             parallel {
                 stage('Build Frontend') { 
                     agent {
-                        docker {
-                            image 'bare-angular:alpine'
+                        dockerfile {
+                            dir 'AngularImage'
                         }
                     }
                     stages {
@@ -61,21 +61,13 @@ pipeline {
             }
         }
         stage('Deploy for Development') {
-            // when {
-            //     branch 'master'
-            // }
             agent any
             steps {
-                // dir('seagul'){
-                    sh 'pwd'
-                    sh 'ls'
-                    //find 'dist'
-                    sh 'docker stop seagul_dev || true'
-                    sh 'docker rm seagul_dev || true'
-                    sh 'docker run --name seagul_dev -d -p 80:80 cool-idea'
-                // }
-                // sh 'chmod +x deploy.sh'
-                // sh './deploy.sh development'
+                sh 'pwd'
+                sh 'ls'
+                sh 'docker stop seagul_dev || true'
+                sh 'docker rm seagul_dev || true'
+                sh 'docker run --name seagul_dev -d -p 80:80 cool-idea'
             }
         }
     }
