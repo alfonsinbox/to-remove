@@ -10,7 +10,7 @@ pipeline {
                         }
                     }
                     stages {
-                        stage('build'){
+                        stage('build') {
                             steps {
                                 dir('seagul') {
                                     sh 'npm i --verbose'
