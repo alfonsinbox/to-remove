@@ -1,6 +1,12 @@
 pipeline {
     agent none
     stages() {
+        stage('who') {
+            agent any
+            steps {
+                sh 'whoami'
+            }
+        }
         stage('Build') {
             parallel {
                 stage('Build Frontend') { 
