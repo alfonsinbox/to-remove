@@ -77,7 +77,7 @@ pipeline {
                             }
                             post {
                                 success {
-                                    archiveArtifacts artifacts: 'target/**/*.jar', fingerprint: true
+                                    archiveArtifacts artifacts: 'FlashbookFrontend/target/**/*.jar', fingerprint: true
                                 }
                             }
                         }
@@ -89,7 +89,7 @@ pipeline {
                             }
                             post {
                                 success {
-                                    archiveArtifacts artifacts: 'target/**/surefire-reports/**/*.xml', fingerprint: true
+                                    archiveArtifacts artifacts: 'FlashbookFrontend/target/**/surefire-reports/**/*.xml', fingerprint: true
                                 }
                             }
                         }
