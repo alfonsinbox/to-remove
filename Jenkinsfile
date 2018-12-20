@@ -15,6 +15,9 @@ pipeline {
                             dir 'AngularImage'
                         }
                     }
+                    environment {
+                        HOME="."
+                    }
                     stages {
                         stage('build') {
                             steps {
