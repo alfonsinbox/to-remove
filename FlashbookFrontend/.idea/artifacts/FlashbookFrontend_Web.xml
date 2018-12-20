@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="FlashbookFrontend:Web">
-    <output-path>$PROJECT_DIR$/out/artifacts/FlashbookFrontend_Web</output-path>
-    <root id="archive" name="FlashbookFrontend_Web.war">
-      <element id="artifact" artifact-name="FlashbookFrontend:Web exploded" />
-    </root>
-  </artifact>
-</component>
