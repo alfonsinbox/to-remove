@@ -6,7 +6,6 @@ pipeline {
                 stage('Build Frontend') { 
                     agent {
                         dockerfile {
-                            // label 'docker'
                             dir 'AngularImage'
                             args '-v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock'
                         }
