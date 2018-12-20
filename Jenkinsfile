@@ -13,7 +13,7 @@ pipeline {
                     agent {
                         dockerfile {
                             dir 'AngularImage'
-                            args '-v /usr/bin/docker:/usr/bin/docker'
+                            args '-v $(which docker):/usr/bin/docker'
                         }
                     }
                     environment {
@@ -23,9 +23,9 @@ pipeline {
                         stage('build') {
                             steps {
                                 dir('seagul') {
-                                    sh 'npm i --verbose'
-                                    sh 'ng build --prod --build-optimizer=false --aot=true'
-                                    sh 'ls'
+                                    //sh 'npm i --verbose'
+                                    //sh 'ng build --prod --build-optimizer=false --aot=true'
+                                    //sh 'ls'
                                     sh 'docker build -t cool-idea .'
                                 }
                             }
