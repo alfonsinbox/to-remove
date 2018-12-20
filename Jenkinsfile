@@ -26,6 +26,7 @@ pipeline {
                                     //sh 'npm i --verbose'
                                     //sh 'ng build --prod --build-optimizer=false --aot=true'
                                     //sh 'ls'
+                                    //
                                     sh 'which docker'
                                     sh 'docker run --rm -d alpine'
                                 }
