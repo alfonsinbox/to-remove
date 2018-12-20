@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/template/layout.xhtml">
+    <f:metadata>
+        <f:viewParam name="id" value="#{user.id}"/>
+        <f:viewAction action="#{user.loadUser}"/>
+        <f:viewAction action="#{user.loadLogs}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+        <f:view>
+            <p:panel>
+                <h:panelGrid columns="2">
+                    <p:panel>
+                        <h:panelGrid columns="1">
+                            <p:graphicImage name="images/profile-placeholder.png" width="128" height="128"/>
+                            <p:outputLabel value="#{user.name}"/>
+                            <p:commandButton action="#{user.addFriend}" value="Add frendo"/>
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:panel>
+                        <h:form>
+                            <h:panelGrid columns="1">
+                                <p:outputLabel id="pmMessageOutput" value="#{user.pmMessage}"/>
+                                <p:inputTextarea id="pmInput" value="#{user.message}"/>
+                                <p:commandButton action="#{user.sendPrivateMessage}" update="pmInput pmMessageOutput"
+                                                 value="Send PM"/>
+                            </h:panelGrid>
+                        </h:form>
+                    </p:panel>
+                </h:panelGrid>
+                <ui:repeat value="#{user.logs}" var="log">
+                    <p:panel header="#{log}"/>
+                </ui:repeat>
+            </p:panel>
+        </f:view>
+    </ui:define>
+</ui:composition>
+
+
+</html>

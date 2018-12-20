@@ -61,6 +61,40 @@ pipeline {
                         }
                     }
                 }
+                stage('Frontend Web') {
+                    agent {
+                        docker {
+                            image 'maven:3-alpine'
+                            args '-v $HOME/.m2:/root/.m2'
+                        }
+                    }
+                    stages {
+                        stage('Build Frontend') { 
+                            steps {
+                                dir('FlashbookFrontend') {
+                                    sh 'mvn -B -DskipTests=true clean package'
+                                }
+                            }
+                            post {
+                                success {
+                                    archiveArtifacts artifacts: 'target/**/*.jar', fingerprint: true
+                                }
+                            }
+                        }
+                        stage('Test Frontend') {
+                            steps {
+                                dir('FlashbookFrontend') {
+                                    sh 'mvn test'
+                                }
+                            }
+                            post {
+                                success {
+                                    archiveArtifacts artifacts: 'target/**/surefire-reports/**/*.xml', fingerprint: true
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         // stage('Deploy for Development') {

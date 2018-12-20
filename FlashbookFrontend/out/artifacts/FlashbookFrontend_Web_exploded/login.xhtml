@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="WEB-INF/template/layout.xhtml">
+    <ui:define name="content">
+        <f:view>
+            <h:form id="loginForm">
+                <h:panelGrid columns="1">
+                    <p:messages styleClass="error"/>
+
+                    <p:outputLabel value="Username"/>
+                    <p:inputText id="usernameField" value="#{login.username}" required="true"
+                                 requiredMessage="You need a username"/>
+                    <p:message for="usernameField" styleClass="error"/>
+
+                    <p:outputLabel value="Password"/>
+                    <p:password id="passwordField" value="#{login.password}" required="true"
+                                requiredMessage="You need a password"/>
+                    <p:message for="passwordField" styleClass="error"/>
+
+                    <p:commandButton value="Login" type="submit" action="#{login.doLogin}" update="loginForm"/>
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+    </ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="WEB-INF/template/layout.xhtml">
+    <ui:define name="content">
+        <h:panelGroup id="loginWarning" rendered="#{not userSession.loggedIn}">
+            <h:outputText value="You must log in to view this page"/>
+        </h:panelGroup>
+
+        <h:panelGroup id="feedPanel" rendered="#{userSession.loggedIn}">
+            <h:outputText value="Your feed is empty" rendered="${empty logs.feed}"/>
+            <ui:repeat value="#{logs.feed}" var="log">
+                <p:panel header="#{log.text}" rendered="${not empty log.text}"/>
+                <p:panel header="#{log.chartId}" rendered="${not empty log.chartId}">
+                    <iframe src="/graphbuilder/static/viewchart.html?chartId=${log.chartId}"
+                            style="border: none; width: 550px; height: 300px; alignment: center;" scrolling="no"/>
+                </p:panel>
+            </ui:repeat>
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>
+</html>
